@@ -40,11 +40,37 @@ class Users {
 
     public function connect($login,$password)
     {
+        $this->msg_error = [];
         $this->login = $login;
         $this->password = $password;
 
-        $requete = $this->pdo->prepare("SELECT login and password FROM utilisateurs ");
+        $requete = $this->pdo->prepare("SELECT id,login,password FROM utilisateurs WHERE login=:login and password=:password");
+        $requete->execute(array(':login' => $login,':password' => $password));;
+        $row = $requete->fetchall(PDO::FETCH_ASSOC);
+        var_dump($row);
+
+        if($row == true){
+            $_SESSION['id'] = $row[0]['id'];
+            $_SESSION['login'] = $_POST['login'];
+            $_SESSION['password'] = $_POST['password'];
+        }
+
+        else {
+            
+            $msg_error[]="Le login et/ou le mot de passe est incorrect !";
+        }
+        return $msg_error;
     }
+
+
+
+    public function deconnexion()
+    {
+        session_destroy();
+        header('Location: connexion.php');
+    }
+
+        
 }
 
 
