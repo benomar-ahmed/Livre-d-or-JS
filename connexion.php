@@ -12,6 +12,7 @@ if(isset($_POST['submit'])){
 
     $connectuser = new Users();
     $connectuser->connect($login,$password);
+    $var_return = $connectuser->connect($login,$password);
 
     foreach($var_return as $message){
         echo $message;

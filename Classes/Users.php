@@ -47,12 +47,12 @@ class Users {
         $requete = $this->pdo->prepare("SELECT id,login,password FROM utilisateurs WHERE login=:login and password=:password");
         $requete->execute(array(':login' => $login,':password' => $password));;
         $row = $requete->fetchall(PDO::FETCH_ASSOC);
-        var_dump($row);
 
         if($row == true){
             $_SESSION['id'] = $row[0]['id'];
             $_SESSION['login'] = $_POST['login'];
             $_SESSION['password'] = $_POST['password'];
+            $msg_error[]="Bonjour ".$_SESSION['login'];
         }
 
         else {

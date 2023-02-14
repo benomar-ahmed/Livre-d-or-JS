@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require 'Classes/User.php';
+require 'Classes/Users.php';
 $newuser = new Users();
 $newuser->deconnexion();
 
