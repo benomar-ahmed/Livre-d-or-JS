@@ -38,6 +38,11 @@ if(isset($_POST['submit'])){
     <title>Inscription</title>
 </head>
 <body>
+    
+    <header>
+        <?php require 'header.php' ?>
+    </header>
+    
     <main>
         <h1>Inscription</h1>
 
