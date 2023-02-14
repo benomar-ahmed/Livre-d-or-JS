@@ -7,6 +7,9 @@
     <title>Accueil</title>
 </head>
 <body>
+    <header>
+        <?php require 'header.php' ?>
+    </header>
     <h1>Page d'accueil !</h1>
 </body>
 </html>
