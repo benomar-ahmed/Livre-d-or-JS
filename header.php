@@ -3,6 +3,7 @@
 
         <?php if(isset($_SESSION['login']) == true) : ?>
         <li><a href="profil.php">Profil</a></li>
+        <li><a href="livre-or.php">Livre d'or</a></li>
         <li><a href="deconnexion.php">Deconnexion</a></li>
         <?php else :?>
         <li><a href='inscription.php'>Inscription</a></li>

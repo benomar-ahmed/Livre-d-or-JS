@@ -75,10 +75,27 @@ class Users {
     {
         $this->login = $login;
         $this->password = $password;
-        
+
         $requete = $this->pdo->prepare("UPDATE utilisateurs SET login=:login,password =:password WHERE login=:login2");
         $requete->execute(array(':login' => $login, ':password' => $password, ':login2' => $_SESSION['login']));
 
+    }
+
+
+    public function livreor()
+    {
+        $requete = $this->pdo->prepare("SELECT DATE_FORMAT(`date`,'%d/%m/%Y'), `login`, `commentaire` FROM `utilisateurs` INNER JOIN `commentaires` WHERE utilisateurs.id = commentaires.id_utilisateur ORDER BY `date` DESC;");
+        $requete->execute();
+        $new_var = $requete->fetchAll();
+
+        $requete2 = $this->pdo->prepare("SELECT commentaire FROM commentaires");
+        $requete->execute();
+        $new_var2 = $requete->fetchAll();
+
+        if($new_var2 == false)
+        {
+            echo "Il n'y a aucun commentaire";
+        }
     }
         
 }
