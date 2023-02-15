@@ -70,6 +70,16 @@ class Users {
         header('Location: connexion.php');
     }
 
+
+    public function update($login,$password)
+    {
+        $this->login = $login;
+        $this->password = $password;
+
+        $requete = $this->pdo->prepare("UPDATE utilisateurs SET login=:login,password =:password WHERE login=:login2");
+        $requete->execute(array(':login' => $login, ':password' => $password, ':login2' => $_SESSION['login']));
+
+    }
         
 }
 
