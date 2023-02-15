@@ -6,7 +6,11 @@ require 'Classes/Users.php';
 
 if(isset($_POST['submit']))
 {
-    
+    $login = $_POST['login'];
+    $password = $_POST['password'];
+
+    $UpdateUser = new Users();
+    $UpdateUser->update($login,$password);
 }
 
 
