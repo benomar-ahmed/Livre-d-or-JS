@@ -4,10 +4,25 @@ session_start();
 
 require 'Classes/Users.php';
 
-$livreor = new Users();
-$livreor->livreor();
+
+// $pdo = new PDO('mysql:host=localhost;dbname=livreorjs;charset=utf8','root','');
+// $requete2 = $pdo->prepare("SELECT DATE_FORMAT(`date`,'%d/%m/%Y'), `login`, `commentaire` FROM `utilisateurs` INNER JOIN `commentaires` WHERE utilisateurs.id = commentaires.id_utilisateur ORDER BY `date` DESC;");
+// $requete2->execute();
+// $new_var2 = $requete2->fetchAll(PDO::FETCH_ASSOC);
+// var_dump($new_var2);
+
+// if($new_var2 == false)
+// {
+//     echo "Il n'y a aucun commentaire";
+// }
 
 
+
+$livreorphp = new Users();
+$livreorphp->listcomment();
+
+$livreorlist = $livreorphp->listcomment();
+var_dump($livreorlist);
 
 ?>
 
@@ -33,18 +48,17 @@ $livreor->livreor();
                 <th>Par l'utilisateur :</th>
                 <th>Commentaires</th>
             </thead>
-            <!-- <tbody>
+            <tbody>
                 <?php
-                // for ($i=0; isset($row[$i]) ; $i++) { 
-                //     echo "<tr>";
-                //     for ($j=0; isset($row[$i][$j]) ; $j++) 
-                //     { 
-                //         echo "<td>" . $row[$i][$j] . "</td>";
-                //     }
-                //     echo "</tr>";
-                // }
+                    foreach($livreorlist as $comment){
+                        echo "<tr>";
+                        foreach ($comment as $key => $value) {
+                            echo "<td>" . $value . "</td>";
+                        }
+                        echo "</tr>";
+                    }
                 ?>
-            </tbody> -->
+            </tbody>
         </table>
     </main>
 </body>

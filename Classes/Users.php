@@ -82,22 +82,33 @@ class Users {
     }
 
 
-    public function livreor()
+    public function listcomment()
     {
-        $requete = $this->pdo->prepare("SELECT DATE_FORMAT(`date`,'%d/%m/%Y'), `login`, `commentaire` FROM `utilisateurs` INNER JOIN `commentaires` WHERE utilisateurs.id = commentaires.id_utilisateur ORDER BY `date` DESC;");
-        $requete->execute();
-        $new_var = $requete->fetchAll();
+        // $requete = $this->pdo->prepare("SELECT DATE_FORMAT(`date`,'%d/%m/%Y'), `login`, `commentaire` FROM `utilisateurs` INNER JOIN `commentaires` WHERE utilisateurs.id = commentaires.id_utilisateur ORDER BY `date` DESC;");
+        // $requete->execute();
+        // $new_var = $requete->fetchAll();
 
-        $requete2 = $this->pdo->prepare("SELECT commentaire FROM commentaires");
-        $requete->execute();
-        $new_var2 = $requete->fetchAll();
+        $requete2 = $this->pdo->prepare("SELECT DATE_FORMAT(`date`,'%d/%m/%Y'), `login`, `commentaire` FROM `utilisateurs` INNER JOIN `commentaires` WHERE utilisateurs.id = commentaires.id_utilisateur ORDER BY `date` DESC;");
+        $requete2->execute();
+        $new_var2 = $requete2->fetchAll(PDO::FETCH_ASSOC);
 
         if($new_var2 == false)
         {
             echo "Il n'y a aucun commentaire";
         }
+
+        return $new_var2;
     }
         
+
+    public function addcommentaire($commentaire,$id)
+    {
+        var_dump($id);
+        $requete = $this->pdo->prepare("INSERT INTO `commentaires` (`commentaire`,`id_utilisateur`,`date`) VALUES (:commentaire,:id_utilisateur,NOW())");
+        $new_var = $requete->execute(array('commentaire' => $commentaire, 'id_utilisateur' => $id));
+        
+        var_dump($new_var);
+    }
 }
 
 
