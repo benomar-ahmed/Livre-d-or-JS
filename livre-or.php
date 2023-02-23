@@ -22,7 +22,9 @@ $livreorphp = new Users();
 $livreorphp->listcomment();
 
 $livreorlist = $livreorphp->listcomment();
-var_dump($livreorlist);
+
+
+
 
 ?>
 
@@ -60,6 +62,12 @@ var_dump($livreorlist);
                 ?>
             </tbody>
         </table>
+        
+        <?php if(isset($_SESSION['login'])){ ?>
+            <a href="commentaire.php" name="lien_commentaire">Ajouter un commentaire !</a>
+        <?php } else { ?>
+            <a href="connexion.php" name="lien_commentaire">Ajouter un commentaire !</a>
+        <?php } ?>
     </main>
 </body>
 </html>
